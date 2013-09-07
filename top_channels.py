@@ -3,6 +3,7 @@
 # by the number of people present on it, and lists them.
 
 __module_name__ = "Top Channels"
+__module_author__ = "Rohitt Shinde (http://xworkspace.blogspot.com)"
 __module_version__ = "0.1a"
 __module_description__ = "list the top channels in people you hang out with"
 
@@ -29,7 +30,11 @@ for channel in joined_channels.itervalues():
 
 for user_list in users_lists:
 	for user in user_list:
-		users.append(user.nick)
+		nick = user.nick
+		if nick not in users:
+			users.append(nick)
+
+print 'Number of users: %d\n' % (len(users))
 
 # Try opening a file to write the results in
 pathh = xchat.get_info('xchatdir') + '/top_channels.txt'
@@ -41,7 +46,6 @@ try:
 		f = open(pathh, 'w')	
 except IOError as e:
 	print 'IO Error'
-	sys.exit(0)
 
 def add_channel(words, word_eol, userdata):
 	global users
@@ -77,7 +81,6 @@ def stop_timer(word, word_eol, userdata):
 		xchat.unhook(myhook)
 		myhook = None
 		print 'Timer removed!'
-		sys.exit(0)
 
 myhook = xchat.hook_timer(60000, timer)
 xchat.hook_command("STOP", stop_timer)
