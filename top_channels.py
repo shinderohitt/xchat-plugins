@@ -3,7 +3,7 @@
 # by the number of people present on it, and lists them.
 
 __module_name__ = "Top Channels"
-__module_author__ = "Rohitt Shinde (http://xworkspace.blogspot.com)"
+__module_author__ = "Rohitt Shinde (http://www.rohitt.com)"
 __module_version__ = "0.1a"
 __module_description__ = "list the top channels in people you hang out with"
 
